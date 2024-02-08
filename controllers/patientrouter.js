@@ -1,6 +1,7 @@
 const express=require("express")
 const router=express.Router()
 const patientmod=require("../models/patientModel")
+const patientModel = require("../models/patientModel")
 
 
 
@@ -12,6 +13,12 @@ router.post("/add",async(req,res)=>{
 })
 router.get("/view",async(req,res)=>{
     let data=await patientmod.find()
+    res.json(data)
+})
+
+router.post("/search",async(req,res)=>{
+    let input=req.body
+    let data=await patientmod.find(input)
     res.json(data)
 })
 
